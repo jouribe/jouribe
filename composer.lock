@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57617beba567ac966bff8e259ab9101a",
+    "content-hash": "14f67f9e0be3681513a12a108986b7d0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -63,6 +63,59 @@
             "time": "2020-05-31T07:17:05+00:00"
         },
         {
+            "name": "bacon/bacon-qr-code",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bacon/BaconQrCode.git",
+                "reference": "add6d9ff97336b62f95a3b94f75cea4e085465b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/add6d9ff97336b62f95a3b94f75cea4e085465b2",
+                "reference": "add6d9ff97336b62f95a3b94f75cea4e085465b2",
+                "shasum": ""
+            },
+            "require": {
+                "dasprid/enum": "^1.0",
+                "ext-iconv": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phly/keep-a-changelog": "^1.4",
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "suggest": {
+                "ext-imagick": "to generate QR code images"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BaconQrCode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "BaconQrCode is a QR code generator for PHP.",
+            "homepage": "https://github.com/Bacon/BaconQrCode",
+            "support": {
+                "issues": "https://github.com/Bacon/BaconQrCode/issues",
+                "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.2"
+            },
+            "time": "2020-07-30T16:40:58+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.9.1",
             "source": {
@@ -117,6 +170,53 @@
                 }
             ],
             "time": "2020-08-18T23:57:15+00:00"
+        },
+        {
+            "name": "dasprid/enum",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DASPRiD/Enum.git",
+                "reference": "6ccc0d7141a7f149e3c56cb0ce5f05d9152cfd07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/6ccc0d7141a7f149e3c56cb0ce5f05d9152cfd07",
+                "reference": "6ccc0d7141a7f149e3c56cb0ce5f05d9152cfd07",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DASPRiD\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP 7.1 enum implementation",
+            "keywords": [
+                "enum",
+                "map"
+            ],
+            "support": {
+                "issues": "https://github.com/DASPRiD/Enum/issues",
+                "source": "https://github.com/DASPRiD/Enum/tree/master"
+            },
+            "time": "2020-07-30T16:37:13+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -867,17 +967,215 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
-            "name": "laravel/framework",
-            "version": "v8.1.0",
+            "name": "jaybizzle/crawler-detect",
+            "version": "v1.2.99",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "d769a497a20e4a374ff7454dde7eee65145e3659"
+                "url": "https://github.com/JayBizzle/Crawler-Detect.git",
+                "reference": "0ffea34489b258a2709bfe93a9553e1efa5d1904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d769a497a20e4a374ff7454dde7eee65145e3659",
-                "reference": "d769a497a20e4a374ff7454dde7eee65145e3659",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/0ffea34489b258a2709bfe93a9553e1efa5d1904",
+                "reference": "0ffea34489b258a2709bfe93a9553e1efa5d1904",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.5|^6.5",
+                "satooshi/php-coveralls": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jaybizzle\\CrawlerDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Beech",
+                    "email": "m@rkbee.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
+            "homepage": "https://github.com/JayBizzle/Crawler-Detect/",
+            "keywords": [
+                "crawler",
+                "crawler detect",
+                "crawler detector",
+                "crawlerdetect",
+                "php crawler detect"
+            ],
+            "support": {
+                "issues": "https://github.com/JayBizzle/Crawler-Detect/issues",
+                "source": "https://github.com/JayBizzle/Crawler-Detect/tree/master"
+            },
+            "time": "2020-08-25T21:35:55+00:00"
+        },
+        {
+            "name": "jenssegers/agent",
+            "version": "v2.6.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/agent.git",
+                "reference": "daa11c43729510b3700bc34d414664966b03bffe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/agent/zipball/daa11c43729510b3700bc34d414664966b03bffe",
+                "reference": "daa11c43729510b3700bc34d414664966b03bffe",
+                "shasum": ""
+            },
+            "require": {
+                "jaybizzle/crawler-detect": "^1.2",
+                "mobiledetect/mobiledetectlib": "^2.7.6",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5.0|^6.0|^7.0"
+            },
+            "suggest": {
+                "illuminate/support": "Required for laravel service providers"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Jenssegers\\Agent\\AgentServiceProvider"
+                    ],
+                    "aliases": {
+                        "Agent": "Jenssegers\\Agent\\Facades\\Agent"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Agent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "Desktop/mobile user agent parser with support for Laravel, based on Mobiledetect",
+            "homepage": "https://github.com/jenssegers/agent",
+            "keywords": [
+                "Agent",
+                "browser",
+                "desktop",
+                "laravel",
+                "mobile",
+                "platform",
+                "user agent",
+                "useragent"
+            ],
+            "support": {
+                "issues": "https://github.com/jenssegers/agent/issues",
+                "source": "https://github.com/jenssegers/agent/tree/v2.6.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/jenssegers",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/jenssegers/agent",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "laravel/fortify",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/fortify.git",
+                "reference": "a255ce7e12601eb2b4972397c9f94a3e4ca13d32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/fortify/zipball/a255ce7e12601eb2b4972397c9f94a3e4ca13d32",
+                "reference": "a255ce7e12601eb2b4972397c9f94a3e4ca13d32",
+                "shasum": ""
+            },
+            "require": {
+                "bacon/bacon-qr-code": "^2.0",
+                "ext-json": "*",
+                "php": "^7.3",
+                "pragmarx/google2fa": "^7.0|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Fortify\\FortifyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Fortify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Backend controllers and scaffolding for Laravel authentication.",
+            "keywords": [
+                "auth",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/fortify/issues",
+                "source": "https://github.com/laravel/fortify"
+            },
+            "time": "2020-09-14T18:51:28+00:00"
+        },
+        {
+            "name": "laravel/framework",
+            "version": "v8.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1c57ab5e375d0a897c22b29e8352453be514131e",
+                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e",
                 "shasum": ""
             },
             "require": {
@@ -907,7 +1205,7 @@
                 "symfony/routing": "^5.1",
                 "symfony/var-dumper": "^5.1",
                 "tijsverkoyen/css-to-inline-styles": "^2.2.2",
-                "vlucas/phpdotenv": "^5.0",
+                "vlucas/phpdotenv": "^5.2",
                 "voku/portable-ascii": "^1.4.8"
             },
             "conflict": {
@@ -1031,7 +1329,137 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2020-09-11T14:24:58+00:00"
+            "time": "2020-09-16T16:13:13+00:00"
+        },
+        {
+            "name": "laravel/jetstream",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/jetstream.git",
+                "reference": "9dd74e79fe09c570eb7a6bb4f00eac2c0dc3ed5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/9dd74e79fe09c570eb7a6bb4f00eac2c0dc3ed5f",
+                "reference": "9dd74e79fe09c570eb7a6bb4f00eac2c0dc3ed5f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^8.0",
+                "jenssegers/agent": "^2.6",
+                "laravel/fortify": "^1.0",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "inertiajs/inertia-laravel": "^0.2.4",
+                "laravel/sanctum": "^2.6",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Jetstream\\JetstreamServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Jetstream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Tailwind scaffolding for the Laravel framework.",
+            "keywords": [
+                "auth",
+                "laravel",
+                "tailwind"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/jetstream/issues",
+                "source": "https://github.com/laravel/jetstream"
+            },
+            "time": "2020-09-15T20:17:25+00:00"
+        },
+        {
+            "name": "laravel/sanctum",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sanctum.git",
+                "reference": "a38ffd5f419dbaaefc4cb81c1bdde12a02c4854e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/a38ffd5f419dbaaefc4cb81c1bdde12a02c4854e",
+                "reference": "a38ffd5f419dbaaefc4cb81c1bdde12a02c4854e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/contracts": "^6.9|^7.0|^8.0",
+                "illuminate/database": "^6.9|^7.0|^8.0",
+                "illuminate/support": "^6.9|^7.0|^8.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Sanctum\\SanctumServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Sanctum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.",
+            "keywords": [
+                "auth",
+                "laravel",
+                "sanctum"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/sanctum/issues",
+                "source": "https://github.com/laravel/sanctum"
+            },
+            "time": "2020-09-01T13:48:09+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1353,6 +1781,131 @@
             "time": "2020-08-09T10:34:01+00:00"
         },
         {
+            "name": "livewire/livewire",
+            "version": "v2.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "b1f5eae5ef5f5942d8d334b4ecb718bac580454f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/b1f5eae5ef5f5942d8d334b4ecb718bac580454f",
+                "reference": "b1f5eae5ef5f5942d8d334b4ecb718bac580454f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "illuminate/validation": "^7.0|^8.0",
+                "php": "^7.2.5",
+                "symfony/http-kernel": "^5.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^7.0|^8.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^5.0|^6.0",
+                "orchestra/testbench-dusk": "^5.2|^6.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ],
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v2.2.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-17T17:38:03+00:00"
+        },
+        {
+            "name": "mobiledetect/mobiledetectlib",
+            "version": "2.8.34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/serbanghita/Mobile-Detect.git",
+                "reference": "6f8113f57a508494ca36acbcfa2dc2d923c7ed5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/6f8113f57a508494ca36acbcfa2dc2d923c7ed5b",
+                "reference": "6f8113f57a508494ca36acbcfa2dc2d923c7ed5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.35||~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Mobile_Detect.php"
+                ],
+                "psr-0": {
+                    "Detection": "namespaced/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Serban Ghita",
+                    "email": "serbanghita@gmail.com",
+                    "homepage": "http://mobiledetect.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+            "homepage": "https://github.com/serbanghita/Mobile-Detect",
+            "keywords": [
+                "detect mobile devices",
+                "mobile",
+                "mobile detect",
+                "mobile detector",
+                "php mobile detect"
+            ],
+            "support": {
+                "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.34"
+            },
+            "time": "2019-09-18T18:44:20+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.1.1",
             "source": {
@@ -1449,16 +2002,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.39.2",
+            "version": "2.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "326efde1bc09077a26cb77f6e2e32e13f06c27f2"
+                "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/326efde1bc09077a26cb77f6e2e32e13f06c27f2",
-                "reference": "326efde1bc09077a26cb77f6e2e32e13f06c27f2",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/6c7646154181013ecd55e80c201b9fd873c6ee5d",
+                "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d",
                 "shasum": ""
             },
             "require": {
@@ -1538,7 +2091,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-10T12:16:42+00:00"
+            "time": "2020-09-11T19:00:58+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -1660,6 +2213,73 @@
                 "source": "https://github.com/opis/closure/tree/3.5.7"
             },
             "time": "2020-09-06T17:02:15+00:00"
+        },
+        {
+            "name": "paragonie/constant_time_encoding",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/constant_time_encoding.git",
+                "reference": "47a1cedd2e4d52688eb8c96469c05ebc8fd28fa2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/47a1cedd2e4d52688eb8c96469c05ebc8fd28fa2",
+                "reference": "47a1cedd2e4d52688eb8c96469c05ebc8fd28fa2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7|^8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6|^7",
+                "vimeo/psalm": "^1|^2|^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParagonIE\\ConstantTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Steve 'Sc00bz' Thomas",
+                    "email": "steve@tobtu.com",
+                    "homepage": "https://www.tobtu.com",
+                    "role": "Original Developer"
+                }
+            ],
+            "description": "Constant-time Implementations of RFC 4648 Encoding (Base-64, Base-32, Base-16)",
+            "keywords": [
+                "base16",
+                "base32",
+                "base32_decode",
+                "base32_encode",
+                "base64",
+                "base64_decode",
+                "base64_encode",
+                "bin2hex",
+                "encoding",
+                "hex",
+                "hex2bin",
+                "rfc4648"
+            ],
+            "support": {
+                "email": "info@paragonie.com",
+                "issues": "https://github.com/paragonie/constant_time_encoding/issues",
+                "source": "https://github.com/paragonie/constant_time_encoding"
+            },
+            "time": "2019-11-06T19:20:29+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1865,6 +2485,58 @@
                 }
             ],
             "time": "2020-07-20T17:29:33+00:00"
+        },
+        {
+            "name": "pragmarx/google2fa",
+            "version": "8.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/google2fa.git",
+                "reference": "26c4c5cf30a2844ba121760fd7301f8ad240100b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/google2fa/zipball/26c4c5cf30a2844ba121760fd7301f8ad240100b",
+                "reference": "26c4c5cf30a2844ba121760fd7301f8ad240100b",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/constant_time_encoding": "^1.0|^2.0",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.18",
+                "phpunit/phpunit": "^7.5.15|^8.5|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PragmaRX\\Google2FA\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "role": "Creator & Designer"
+                }
+            ],
+            "description": "A One Time Password Authentication package, compatible with Google Authenticator.",
+            "keywords": [
+                "2fa",
+                "Authentication",
+                "Two Factor Authentication",
+                "google2fa"
+            ],
+            "support": {
+                "issues": "https://github.com/antonioribeiro/google2fa/issues",
+                "source": "https://github.com/antonioribeiro/google2fa/tree/8.0.0"
+            },
+            "time": "2020-04-05T10:47:18+00:00"
         },
         {
             "name": "predis/predis",
@@ -4938,16 +5610,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v5.1.0",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "448c76d7a9e30c341ff5bc367a923af74ae18467"
+                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/448c76d7a9e30c341ff5bc367a923af74ae18467",
-                "reference": "448c76d7a9e30c341ff5bc367a923af74ae18467",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/fba64139db67123c7a57072e5f8d3db10d160b66",
+                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66",
                 "shasum": ""
             },
             "require": {
@@ -4970,7 +5642,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "5.2-dev"
                 }
             },
             "autoload": {
@@ -5002,7 +5674,7 @@
             ],
             "support": {
                 "issues": "https://github.com/vlucas/phpdotenv/issues",
-                "source": "https://github.com/vlucas/phpdotenv/tree/master"
+                "source": "https://github.com/vlucas/phpdotenv/tree/v5.2.0"
             },
             "funding": [
                 {
@@ -5014,7 +5686,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T19:26:25+00:00"
+            "time": "2020-09-14T15:57:31+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -5168,16 +5840,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8"
+                "reference": "451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/25907a113bfc212a38d458ae365bfb902b4e7fb8",
-                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799",
+                "reference": "451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799",
                 "shasum": ""
             },
             "require": {
@@ -5190,7 +5862,6 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.14",
-                "larapack/dd": "^1.1",
                 "phpunit/phpunit": "^7.5.16",
                 "spatie/phpunit-snapshot-assertions": "^2.0"
             },
@@ -5222,7 +5893,7 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/master"
+                "source": "https://github.com/facade/flare-client-php/tree/1.3.6"
             },
             "funding": [
                 {
@@ -5230,7 +5901,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-26T18:06:23+00:00"
+            "time": "2020-09-18T06:35:11+00:00"
         },
         {
             "name": "facade/ignition",
@@ -5917,16 +6588,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.1",
+            "version": "5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44"
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d870572532cd70bc3fab58f2e23ad423c8404c44",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
                 "shasum": ""
             },
             "require": {
@@ -5969,20 +6640,20 @@
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
                 "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/master"
             },
-            "time": "2020-08-15T11:14:08+00:00"
+            "time": "2020-09-03T19:13:55+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651"
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/e878a14a65245fbe78f8080eba03b47c3b705651",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
                 "shasum": ""
             },
             "require": {
@@ -6016,9 +6687,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.x"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.4.0"
             },
-            "time": "2020-06-27T10:12:23+00:00"
+            "time": "2020-09-17T18:55:26+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -6089,16 +6760,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.8",
+            "version": "9.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb"
+                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f98f8466126d83b55b924a94d2244c53c216b8fb",
-                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5134e2a65ec48e2f7126d12f1503a9889c660bdf",
+                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf",
                 "shasum": ""
             },
             "require": {
@@ -6106,7 +6777,7 @@
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",
                 "nikic/php-parser": "^4.8",
-                "php": "^7.3 || ^8.0",
+                "php": ">=7.3",
                 "phpunit/php-file-iterator": "^3.0.3",
                 "phpunit/php-text-template": "^2.0.2",
                 "sebastian/code-unit-reverse-lookup": "^2.0.2",
@@ -6154,7 +6825,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/master"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.1.10"
             },
             "funding": [
                 {
@@ -6162,7 +6833,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-07T08:07:10+00:00"
+            "time": "2020-09-18T05:25:29+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -6514,12 +7185,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "5ae6aa6482b72946bc0d279c3b54dc1dbeae68d8"
+                "reference": "88de753349e4deedb32796fc94bddf9b2db2dd1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5ae6aa6482b72946bc0d279c3b54dc1dbeae68d8",
-                "reference": "5ae6aa6482b72946bc0d279c3b54dc1dbeae68d8",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/88de753349e4deedb32796fc94bddf9b2db2dd1f",
+                "reference": "88de753349e4deedb32796fc94bddf9b2db2dd1f",
                 "shasum": ""
             },
             "conflict": {
@@ -6650,6 +7321,7 @@
                 "phpxmlrpc/extras": "<0.6.1",
                 "pimcore/pimcore": "<6.3",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
+                "prestashop/contactform": ">1.0.1,<4.3",
                 "prestashop/gamification": "<2.3.2",
                 "prestashop/ps_facetedsearch": "<3.4.1",
                 "privatebin/privatebin": "<1.2.2|>=1.3,<1.3.2",
@@ -6658,6 +7330,7 @@
                 "pusher/pusher-php-server": "<2.2.1",
                 "rainlab/debugbar-plugin": "<3.1",
                 "robrichards/xmlseclibs": "<3.0.4",
+                "sabberworm/php-css-parser": ">=1,<1.0.1|>=2,<2.0.1|>=3,<3.0.1|>=4,<4.0.1|>=5,<5.0.9|>=5.1,<5.1.3|>=5.2,<5.2.1|>=6,<6.0.2|>=7,<7.0.4|>=8,<8.0.1|>=8.1,<8.1.1|>=8.2,<8.2.1|>=8.3,<8.3.1",
                 "sabre/dav": ">=1.6,<1.6.99|>=1.7,<1.7.11|>=1.8,<1.8.9",
                 "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
                 "sensiolabs/connect": "<4.2.3",
@@ -6744,7 +7417,7 @@
                 "willdurand/js-translation-bundle": "<2.1.1",
                 "yii2mod/yii2-cms": "<1.9.2",
                 "yiisoft/yii": ">=1.1.14,<1.1.15",
-                "yiisoft/yii2": "<2.0.15",
+                "yiisoft/yii2": "<2.0.38",
                 "yiisoft/yii2-bootstrap": "<2.0.4",
                 "yiisoft/yii2-dev": "<2.0.15",
                 "yiisoft/yii2-elasticsearch": "<2.0.5",
@@ -6778,7 +7451,6 @@
                 "zfcampus/zf-apigility-doctrine": ">=1,<1.0.3",
                 "zfr/zfr-oauth2-server-module": "<0.1.2"
             },
-            "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6811,7 +7483,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-13T17:11:14+00:00"
+            "time": "2020-09-18T05:02:13+00:00"
         },
         {
             "name": "scrivo/highlight.php",
