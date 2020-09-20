@@ -19,6 +19,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "alpinejs": "^2.7.0",
         "axios": "^0.20.0",
         "laravel-echo": "^1.8.1",
         "lodash": "^4.17.19",

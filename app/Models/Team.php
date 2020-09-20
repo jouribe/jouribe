@@ -7,6 +7,9 @@ use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
 
+/**
+ * @mixin IdeHelperTeam
+ */
 class Team extends JetstreamTeam
 {
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +12,10 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+/**
+ * @mixin IdeHelperUser
+ */
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -57,4 +62,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get users email by domain.
+     *
+     * @param  Builder  $builder
+     * @param $value
+     *
+     * @return Builder
+     */
+    public function scopeGetEmailByDomain(Builder $builder, $value): Builder
+    {
+        return $builder->where('email', $value);
+    }
 }
