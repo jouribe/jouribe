@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingFieldTypeInspection */
+
 namespace App\Models;
 
 use Laravel\Jetstream\Events\TeamCreated;

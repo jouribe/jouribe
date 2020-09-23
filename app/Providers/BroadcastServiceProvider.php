@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpIncludeInspection */
+
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Broadcast;
@@ -12,7 +14,7 @@ class BroadcastServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Broadcast::routes();
 

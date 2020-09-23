@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingFieldTypeInspection */
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -73,6 +75,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function scopeGetEmailByDomain(Builder $builder, $value): Builder
     {
-        return $builder->where('email', $value);
+        return $builder->where('email', 'like', "%@{$value}%");
     }
 }

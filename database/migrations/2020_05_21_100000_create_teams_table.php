@@ -11,7 +11,7 @@ class CreateTeamsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
@@ -27,7 +27,7 @@ class CreateTeamsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('teams');
     }

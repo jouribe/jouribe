@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingFieldTypeInspection */
+
 namespace Database\Factories;
 
 use App\Models\User;
@@ -20,7 +22,7 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition() : array
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name,
