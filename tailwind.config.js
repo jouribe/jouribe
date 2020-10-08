@@ -7,6 +7,7 @@ module.exports = {
     },
 
     purge: {
+        enabled: true,
         layers: ['utilities'],
         content: [
             './storage/framework/views/*.php',
