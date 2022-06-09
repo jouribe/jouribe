@@ -4,9 +4,11 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\ArrayShape;
+use Illuminate\Support\Carbon;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory
  */
 class UserFactory extends Factory
 {
@@ -15,14 +17,25 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    #[ArrayShape([
+        'name' => "string",
+        'email' => "string",
+        'email_verified_at' => Carbon::class,
+        'password' => "string",
+        'remember_token' => "string",
+        'created_at' => Carbon::class,
+        'updated_at' => Carbon::class,
+    ])]
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'email_verified_at' => $this->faker->dateTimeBetween('-5 years'),
             'password' => bcrypt('password'), // password
             'remember_token' => Str::random(10),
+            'created_at' => $this->faker->dateTimeBetween('-5 years'),
+            'updated_at' => $this->faker->dateTimeBetween('-5 years'),
         ];
     }
 
@@ -31,7 +44,7 @@ class UserFactory extends Factory
      *
      * @return static
      */
-    public function unverified()
+    public function unverified(): static
     {
         return $this->state(function (array $attributes) {
             return [
