@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.1",
         "ebess/advanced-nova-media-library": "^4.0",
         "formfeed-uk/nova-breadcrumbs": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -26,7 +26,8 @@
         "spatie/laravel-sluggable": "^3.4",
         "spatie/laravel-tags": "^4.3",
         "spatie/nova-tags-field": "^4.0",
-        "stepanenko3/nova-json": "^3.0"
+        "stepanenko3/nova-json": "^3.0",
+        "suleymanozev/enum-field": "^1.0"
     },
     "repositories": [
         {

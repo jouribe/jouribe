@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Enums\PostState;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Itsmejoshua\Novaspatiepermissions\PermissionsBasedAuthTrait;
 use Laravel\Nova\Fields\BelongsTo;
@@ -11,9 +12,12 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Query\Search\SearchableRelation;
 use Spatie\TagsField\Tags;
+use Suleymanozev\EnumField\Enum;
 
 class Post extends Resource
 {
@@ -67,15 +71,14 @@ class Post extends Resource
     }
 
     /**
-     * The columns that should be searched.
+     * Get the searchable columns for the resource.
      *
-     * @var array
+     * @return array
      */
-    public static $search = [
-        'id',
-        'title',
-        'content'
-    ];
+    public static function searchableColumns(): array
+    {
+        return ['id', 'title', 'content', new SearchableRelation('users', 'name'), new SearchableRelation('categories', 'name')];
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -94,9 +97,10 @@ class Post extends Resource
 
             Markdown::make('Summary')
                 ->sortable()
-                ->rules('required', 'max:255')
+                ->rules('required', 'max:500')
                 ->hideFromIndex()
                 ->alwaysShow(),
+                //->stacked(),
 
             Markdown::make('Content')
                 ->rules('required')
@@ -104,6 +108,7 @@ class Post extends Resource
                 ->showOnPreview()
                 ->hideFromIndex()
                 ->alwaysShow(),
+                //->stacked(),
 
             BelongsTo::make('User')
                 ->searchable()
@@ -125,13 +130,10 @@ class Post extends Resource
                 ->rules('nullable')
                 ->sortable(),
 
-            Boolean::make('Draft')
-                ->rules('nullable')
-                ->sortable(),
-
-            Date::make('Published At')
-                ->rules('nullable')
-                ->sortable(),
+            Enum::make('State')
+                ->attach(PostState::class)
+                ->sortable()
+                ->rules('nullable'),
 
             DateTime::make('Created At')
                 ->filterable()
@@ -143,9 +145,16 @@ class Post extends Resource
                 ->withLinkToTagResource()
                 ->hideFromIndex(),
 
+            Images::make('Banner', 'post_banner')
+                ->conversionOnIndexView('thumb') // conversion used to display the image
+                //->enableExistingMedia()
+                ->rules('required', 'image')
+                ->hideFromIndex(),
+
             Images::make('Cover', 'post_cover')
                 ->conversionOnIndexView('thumb') // conversion used to display the image
-                ->enableExistingMedia()
+                //->enableExistingMedia()
+                ->rules('required', 'image')
                 ->hideFromIndex(),
 
             MorphMany::make('Comments'),

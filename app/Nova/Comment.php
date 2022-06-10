@@ -31,6 +31,13 @@ class Comment extends Resource
     public static string $model = \App\Models\Comment::class;
 
     /**
+     * Indicates if the resource should be globally searchable.
+     *
+     * @var bool
+     */
+    public static $globallySearchable = false;
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
@@ -70,6 +77,7 @@ class Comment extends Resource
             MorphTo::make('Commentable')
                 ->types([
                     Post::class,
+                    Project::class
                 ])
                 ->searchable()
                 ->withSubtitles()

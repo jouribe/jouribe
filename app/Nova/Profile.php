@@ -2,14 +2,14 @@
 
 namespace App\Nova;
 
+use App\Enums\UserGender;
 use Itsmejoshua\Novaspatiepermissions\PermissionsBasedAuthTrait;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Stepanenko3\NovaJson\JSON;
+use Suleymanozev\EnumField\Enum;
 
 class Profile extends Resource
 {
@@ -38,6 +38,13 @@ class Profile extends Resource
     public static string $model = \App\Models\Profile::class;
 
     /**
+     * Indicates if the resource should be globally searchable.
+     *
+     * @var bool
+     */
+    public static $globallySearchable = false;
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
@@ -63,22 +70,21 @@ class Profile extends Resource
     {
         return [
             BelongsTo::make('User')
-                ->searchable(),
+                ->searchable()
+                ->withoutTrashed(),
 
             Date::make('Birthday'),
 
-            Select::make('Gender')
-                ->options([
-                    'female' => 'Female',
-                    'male' => 'Male',
-                    'other' => 'Other'
-                ]),
+            Text::make('Age')
+                ->onlyOnDetail(),
+
+            Enum::make('Gender')->attach(UserGender::class),
 
             JSON::make('Socials', [
-                URL::make('Facebook'),
-                URL::make('Twitter'),
-                URL::make('Github'),
-                URL::make('Web'),
+                Text::make('Facebook'),
+                Text::make('Twitter'),
+                Text::make('Github'),
+                Text::make('Web'),
             ])
         ];
     }

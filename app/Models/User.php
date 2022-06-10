@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -52,6 +53,27 @@ class User extends Authenticatable implements HasMedia
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'avatar'
+    ];
+
+    /**
+     * Get the avatar attribute.
+     *
+     * @return Attribute
+     */
+    public function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => str_replace(config('app.url') . "/storage/", '', $this->getFirstMediaUrl('user_avatar', 'thumb'))
+        );
+    }
+
+    /**
      * Set the thumbnail.
      *
      * @param  Media|null  $media
@@ -80,10 +102,21 @@ class User extends Authenticatable implements HasMedia
      * Get the posts for the user.
      *
      * @return HasMany
+     * @noinspection PhpUnused
      */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Get the projects for the user.
+     *
+     * @return HasMany
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 
     /**

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +12,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('profiles', static function (Blueprint $table) {
-            $table->foreignIdFor(User::class)
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->string('gender')->nullable();
-            $table->date('birthday')->nullable();
-            $table->json('socials')->nullable();
+        Schema::create('sections', static function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('sections');
     }
 };

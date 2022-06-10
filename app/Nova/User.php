@@ -75,6 +75,11 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
+            Avatar::make('Avatar')
+                ->hide()
+                ->hideFromIndex()
+                ->hideFromDetail(),
+
             Images::make('Avatar', 'user_avatar')
                 ->conversionOnIndexView('thumb') // conversion used to display the image
                 ->enableExistingMedia(),
@@ -96,17 +101,17 @@ class User extends Resource
 
             HasOne::make('Profile'),
             HasMany::make('Addresses'),
-            HasMany::make('Posts'),
-            HasMany::make('Comments')
-                ->onlyOnDetail(),
 
-            MorphToMany::make('Roles', 'roles', Role::class)->canSee(function ($request) {
-                return $request->user()->can('view roles');
-            }),
+            MorphToMany::make('Roles', 'roles', Role::class)
+                ->canSee(function ($request) {
+                    return $request->user()->can('view roles');
+                }),
 
-            MorphToMany::make('Permissions', 'permissions', Permission::class)->canSee(function ($request) {
-                return $request->user()->can('view permissions');
-            }),
+            MorphToMany::make('Permissions', 'permissions', Permission::class)
+                ->canSee(function ($request) {
+                    return $request->user()->can('view permissions');
+                })
+                ->searchable(),
         ];
     }
 

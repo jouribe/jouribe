@@ -7,7 +7,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-
     /**
      * Run the migrations.
      *
@@ -15,12 +14,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('posts', static function (Blueprint $table) {
+        Schema::create('projects', static function (Blueprint $table) {
             $table->id();
-            $table->string('title')->fulltext();
-            $table->string('slug')->unique();
-            $table->string('summary', 500)->fulltext();
-            $table->longText('content')->fulltext();
 
             $table->foreignIdFor(Category::class)
                 ->nullable()
@@ -33,12 +28,11 @@ return new class extends Migration {
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->boolean('featured')->default(false);
-            $table->string('state')->default('draft');
-
-            $table->dateTime('schedule_at')->nullable();
-            $table->dateTime('archived_at')->nullable();
-            $table->dateTime('published_at')->nullable();
+            $table->string('name')->fulltext();
+            $table->string('slug')->unique();
+            $table->string('summary', 500)->fulltext();
+            $table->longText('description')->fulltext();
+            $table->string('url')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -52,6 +46,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('projects');
     }
 };

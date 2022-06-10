@@ -9,7 +9,7 @@ class PermissionsSeeder extends Seeder
 {
     public function run(): void
     {
-        $tableNames = ['users', 'posts', 'tags', 'categories', 'addresses', 'profiles', 'roles', 'permissions', 'comments'];
+        $tableNames = ['users', 'posts', 'tags', 'categories', 'addresses', 'profiles', 'roles', 'permissions', 'comments', 'projects'];
         $permissions = ['view', 'create', 'update', 'delete', 'restore', 'destroy', 'manage'];
 
         foreach ($tableNames as $tableName) {

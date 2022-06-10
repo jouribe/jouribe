@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65399b0990053b9901a10656b02ce33c",
+    "content-hash": "cdcfe6cbf6a601dc13e7b9638437c982",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -5839,6 +5839,54 @@
             "time": "2022-05-09T18:52:55+00:00"
         },
         {
+            "name": "suleymanozev/enum-field",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/suleymanozev/enum-field.git",
+                "reference": "22405d638a3a57f880e0190f5b85b64887baeb5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/suleymanozev/enum-field/zipball/22405d638a3a57f880e0190f5b85b64887baeb5a",
+                "reference": "22405d638a3a57f880e0190f5b85b64887baeb5a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0",
+                "illuminate/http": "^9.0",
+                "illuminate/support": "^9.0",
+                "laravel/nova": "^3.0 | ^4.0",
+                "php": ">=8.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Suleymanozev\\EnumField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "enum",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/suleymanozev/enum-field/issues",
+                "source": "https://github.com/suleymanozev/enum-field/tree/v1.0.6"
+            },
+            "time": "2022-05-24T04:36:50+00:00"
+        },
+        {
             "name": "symfony/console",
             "version": "v6.1.0",
             "source": {
@@ -11627,7 +11675,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0.2"
+        "php": "^8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

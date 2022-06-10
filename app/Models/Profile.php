@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\UserGender;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -40,8 +42,28 @@ class Profile extends Model
      */
     protected $casts = [
         'socials' => 'array',
-        'birthday' => 'date'
+        'birthday' => 'date',
+        'gender' => UserGender::class
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'age'
+    ];
+
+    /**
+     * Get age of the user.
+     *
+     * @return int
+     */
+    public function getAgeAttribute(): int
+    {
+        return Carbon::parse($this->birthday)->age;
+    }
 
     /**
      * User that owns profile.

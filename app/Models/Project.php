@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\PostState;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -22,26 +20,23 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 
-class Post extends Model implements HasMedia
+class Project extends Model implements HasMedia
 {
-    use SoftDeletes, HasFactory, HasSlug, HasTags, Searchable, InteractsWithMedia;
+    use SoftDeletes, HasSlug, InteractsWithMedia, Searchable, HasTags;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'content',
+        'name',
+        'description',
         'summary',
-        'category_id',
+        'status',
         'user_id',
-        'published_at',
-        'archived_at',
-        'schedule_at',
-        'featured',
-        'state',
+        'category_id',
+        'url',
     ];
 
     /**
@@ -55,26 +50,13 @@ class Post extends Model implements HasMedia
     }
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'published_at' => 'datetime',
-        'archived_at' => 'datetime',
-        'schedule_at' => 'datetime',
-        'featured' => 'boolean',
-        'state' => PostState::class
-    ];
-
-    /**
      * Get the name of the index associated with the model.
      *
      * @return string
      */
     public function searchableAs(): string
     {
-        return 'posts_index';
+        return 'projects_index';
     }
 
     /**
@@ -84,21 +66,23 @@ class Post extends Model implements HasMedia
      */
     #[ArrayShape([
         'id' => "int|mixed",
-        'title' => "mixed|string",
-        'content' => "mixed|string",
+        'name' => "mixed|string",
+        'description' => "mixed|string",
         'summary' => "mixed|string",
+        'status' => "mixed|string",
         'user' => "mixed|string",
         'category' => "mixed|string",
     ])]
     #[SearchUsingPrefix(['id'])]
-    #[SearchUsingFullText(['title', 'content', 'summary'])]
+    #[SearchUsingFullText(['name', 'description', 'summary'])]
     public function toSearchableArray(): array
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'content' => $this->content,
+            'name' => $this->name,
+            'description' => $this->description,
             'summary' => $this->summary,
+            'status' => $this->status,
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
@@ -123,12 +107,14 @@ class Post extends Model implements HasMedia
     }
 
     /**
-     * Get the options for generating the slug.
+     * Generate a slug for the given string.
+     *
+     * @return SlugOptions
      */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 
@@ -153,69 +139,12 @@ class Post extends Model implements HasMedia
      */
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('post_files')->singleFile();
-        $this->addMediaCollection('post_images');
+        $this->addMediaCollection('project_files')->singleFile();
+        $this->addMediaCollection('project_images');
     }
 
     /**
-     * Publish post.
-     *
-     * @return void
-     */
-    public function publish(): void
-    {
-        $this->published_at = now();
-        $this->saveQuietly();
-    }
-
-    /**
-     * Unpublish post.
-     *
-     * @return void
-     */
-    public function unpublish(): void
-    {
-        $this->published_at = null;
-        $this->saveQuietly();
-    }
-
-    /**
-     * Archive post.
-     *
-     * @return void
-     */
-    public function archive(): void
-    {
-        $this->archived_at = now();
-        $this->saveQuietly();
-    }
-
-    /**
-     * Unarchive post.
-     *
-     * @return void
-     */
-    public function unarchive(): void
-    {
-        $this->archived_at = null;
-        $this->saveQuietly();
-    }
-
-    /**
-     * Set the post as featured or not.
-     *
-     * @param  bool  $value
-     * @return void
-     */
-    public function featured(bool $value = true): void
-    {
-        $this->featured = $value;
-
-        $this->saveQuietly();
-    }
-
-    /**
-     * Get the user that owns the post.
+     * User that owns the project.
      *
      * @return BelongsTo
      */
@@ -225,7 +154,7 @@ class Post extends Model implements HasMedia
     }
 
     /**
-     * Get the category that owns the post.
+     * Category that owns the project.
      *
      * @return BelongsTo
      */
