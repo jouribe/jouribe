@@ -81,8 +81,7 @@ class User extends Resource
                 ->hideFromDetail(),
 
             Images::make('Avatar', 'user_avatar')
-                ->conversionOnIndexView('thumb') // conversion used to display the image
-                ->enableExistingMedia(),
+                ->conversionOnIndexView('thumb'),
 
             Text::make('Name')
                 ->sortable()

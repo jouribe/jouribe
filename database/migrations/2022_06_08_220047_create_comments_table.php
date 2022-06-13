@@ -26,8 +26,8 @@ return new class extends Migration {
             $table->morphs('commentable');
 
             $table->bigInteger('parent_id')->unsigned()->nullable();
-            $table->enum('type', ['comment', 'reply'])->default('comment');
-            $table->enum('status', ['pending', 'approved', 'spam'])->default('pending');
+            $table->string('type')->default('comment');
+            $table->string('status')->default('pending');
 
             $table->timestamps();
             $table->softDeletes();

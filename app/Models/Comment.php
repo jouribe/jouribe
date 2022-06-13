@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\CommentStatus;
+use App\Enums\CommentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -24,9 +26,20 @@ class Comment extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<int, string>
+     */
+    protected $casts = [
+        'status' => CommentStatus::class,
+        'type' => CommentType::class
+    ];
+
+    /**
      * Comments to a commentable.
      *
      * @return MorphTo
+     * @noinspection PhpUnused
      */
     public function commentable(): MorphTo
     {

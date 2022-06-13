@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "artesaos/seotools": "^0.22.0",
         "ebess/advanced-nova-media-library": "^4.0",
         "formfeed-uk/nova-breadcrumbs": "^1.0",
         "guzzlehttp/guzzle": "^7.2",

@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -29,6 +30,7 @@ class Post extends Resource
      * @var array|string[]
      */
     public static array $permissionsForAbilities = [
+        'all' => 'mange posts',
         'viewAny' => 'view posts',
         'view' => 'view posts',
         'create' => 'create posts',
@@ -100,7 +102,7 @@ class Post extends Resource
                 ->rules('required', 'max:500')
                 ->hideFromIndex()
                 ->alwaysShow(),
-                //->stacked(),
+            //->stacked(),
 
             Markdown::make('Content')
                 ->rules('required')
@@ -108,7 +110,7 @@ class Post extends Resource
                 ->showOnPreview()
                 ->hideFromIndex()
                 ->alwaysShow(),
-                //->stacked(),
+            //->stacked(),
 
             BelongsTo::make('User')
                 ->searchable()
@@ -141,21 +143,24 @@ class Post extends Resource
                 ->hideWhenUpdating()
                 ->hideWhenCreating(),
 
+            Date::make('Schedule', 'schedule_at')
+                ->hideFromIndex(),
+
             Tags::make('Tags')
                 ->withLinkToTagResource()
                 ->hideFromIndex(),
 
             Images::make('Banner', 'post_banner')
-                ->conversionOnIndexView('thumb') // conversion used to display the image
-                //->enableExistingMedia()
-                ->rules('required', 'image')
+                ->conversionOnIndexView('thumb')
+                ->rules('nullable')
                 ->hideFromIndex(),
 
             Images::make('Cover', 'post_cover')
-                ->conversionOnIndexView('thumb') // conversion used to display the image
-                //->enableExistingMedia()
-                ->rules('required', 'image')
+                ->conversionOnIndexView('thumb')
+                ->rules('nullable')
                 ->hideFromIndex(),
+
+            MorphOne::make('Seo', 'seoData'),
 
             MorphMany::make('Comments'),
         ];

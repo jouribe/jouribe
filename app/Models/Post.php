@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\Seoable;
 use App\Enums\PostState;
+use App\Traits\SeoableTrait;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,9 +25,9 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 
-class Post extends Model implements HasMedia
+class Post extends Model implements HasMedia, Seoable
 {
-    use SoftDeletes, HasFactory, HasSlug, HasTags, Searchable, InteractsWithMedia;
+    use SoftDeletes, HasFactory, HasSlug, HasTags, Searchable, InteractsWithMedia, SeoableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -242,5 +245,18 @@ class Post extends Model implements HasMedia
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * Seoable trait.
+     *
+     * @return void
+     * @throws BindingResolutionException
+     */
+    public function seoable(): void
+    {
+        $this->seo()
+            ->setTitle($this->title)
+            ->setDescription($this->summary);
     }
 }

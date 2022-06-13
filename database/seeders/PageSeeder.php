@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class SectionSeeder extends Seeder
+class PageSeeder extends Seeder
 {
     public function run()
     {

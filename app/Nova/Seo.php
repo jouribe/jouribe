@@ -2,18 +2,15 @@
 
 namespace App\Nova;
 
-use App\Enums\CommentStatus;
-use App\Enums\CommentType;
 use Itsmejoshua\Novaspatiepermissions\PermissionsBasedAuthTrait;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\MorphTo;
-use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Suleymanozev\EnumField\Enum;
+use Stepanenko3\NovaJson\JSON;
 
-class Comment extends Resource
+class Seo extends Resource
 {
     use PermissionsBasedAuthTrait;
 
@@ -23,7 +20,7 @@ class Comment extends Resource
      * @var array|string[]
      */
     public static array $permissionsForAbilities = [
-        'all' => 'manage comments',
+        'all' => 'manage seos'
     ];
 
     /**
@@ -31,21 +28,14 @@ class Comment extends Resource
      *
      * @var string
      */
-    public static string $model = \App\Models\Comment::class;
-
-    /**
-     * Indicates if the resource should be globally searchable.
-     *
-     * @var bool
-     */
-    public static $globallySearchable = false;
+    public static string $model = \App\Models\Seo::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'post.title';
+    public static $title = 'meta.title';
 
     /**
      * The columns that should be searched.
@@ -53,7 +43,7 @@ class Comment extends Resource
      * @var array
      */
     public static $search = [
-        'post.title', 'user.name', 'user.email',
+        'meta.title',
     ];
 
     /**
@@ -65,19 +55,10 @@ class Comment extends Resource
     public function fields(NovaRequest $request): array
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->sortable()
+                ->hide(),
 
-            BelongsTo::make('User')
-                ->searchable()
-                ->withSubtitles()
-                ->withoutTrashed(),
-
-            Markdown::make('Content')
-                ->rules('required')
-                ->alwaysShow()
-                ->showOnPreview(),
-
-            MorphTo::make('Commentable')
+            MorphTo::make('Seoable')
                 ->types([
                     Post::class,
                     Project::class
@@ -86,14 +67,21 @@ class Comment extends Resource
                 ->withSubtitles()
                 ->withoutTrashed(),
 
-            Enum::make('Type')
-                ->attach(CommentType::class)
-                ->sortable()
-                ->rules('required'),
+            JSON::make('Meta', [
+                Text::make('Title')
+                    ->rules('required', 'max:70'),
 
-            Enum::make('Status')
-                ->attach(CommentStatus::class)
-                ->sortable(),
+                Textarea::make('Description')
+                    ->rules('required', 'max:160')
+                    ->alwaysShow(),
+
+                Text::make('Keywords')
+                    ->rules('required', 'max:160'),
+            ]),
+
+            /*JSON::make('Open Graph'),
+
+            JSON::make('Twitter'),*/
         ];
     }
 
