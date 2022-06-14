@@ -151,14 +151,26 @@ class Post extends Resource
                 ->hideFromIndex(),
 
             Images::make('Banner', 'post_banner')
-                ->conversionOnIndexView('thumb')
+                ->withResponsiveImages()
                 ->rules('nullable')
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->setFileName(function ($originalFileName, $extension, $model) {
+                    return md5($originalFileName).'.'.$extension;
+                })
+                ->setName(function ($originalFileName, $model) {
+                    return md5($originalFileName);
+                }),
 
             Images::make('Cover', 'post_cover')
-                ->conversionOnIndexView('thumb')
+                ->withResponsiveImages()
                 ->rules('nullable')
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->setFileName(function ($originalFileName, $extension, $model) {
+                    return md5($originalFileName).'.'.$extension;
+                })
+                ->setName(function ($originalFileName, $model) {
+                    return md5($originalFileName);
+                }),
 
             MorphOne::make('Seo', 'seoData'),
 

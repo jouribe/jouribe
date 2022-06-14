@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use App\Nova\Metrics\NewUsers;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Validation\Rules;
 use Itsmejoshua\Novaspatiepermissions\Permission;
@@ -76,12 +75,20 @@ class User extends Resource
             ID::make()->sortable(),
 
             Avatar::make('Avatar')
-                ->hide()
-                ->hideFromIndex()
-                ->hideFromDetail(),
+                ->hideWhenUpdating()
+                ->hideWhenCreating()
+                ->maxWidth(120),
 
-            Images::make('Avatar', 'user_avatar')
-                ->conversionOnIndexView('thumb'),
+            Images::make('Avatar')
+                ->hideFromIndex()
+                ->onlyOnForms()
+                ->singleImageRules('image')
+                ->setFileName(function ($originalFileName, $extension, $model) {
+                    return md5($originalFileName).'.'.$extension;
+                })
+                ->setName(function ($originalFileName, $model) {
+                    return md5($originalFileName);
+                }),
 
             Text::make('Name')
                 ->sortable()

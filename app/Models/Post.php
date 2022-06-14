@@ -144,9 +144,10 @@ class Post extends Model implements HasMedia, Seoable
      */
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-            ->fit(Manipulations::FIT_CROP, 300, 300)
-            ->nonQueued();
+        $this
+            ->addMediaConversion('post')
+            ->withResponsiveImages()
+            ->quality(85);
     }
 
     /**

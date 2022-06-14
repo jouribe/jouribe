@@ -69,7 +69,7 @@ class User extends Authenticatable implements HasMedia
     public function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn () => str_replace(config('app.url') . "/storage/", '', $this->getFirstMediaUrl('user_avatar', 'thumb'))
+            get: fn () => str_replace(config('app.url') . "/storage/", '', $this->getFirstMediaUrl('avatar', 'thumb'))
         );
     }
 
@@ -82,7 +82,8 @@ class User extends Authenticatable implements HasMedia
      */
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
+        $this
+            ->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 300, 300)
             ->nonQueued();
     }
@@ -94,7 +95,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('user_files')->singleFile();
+        $this->addMediaCollection('user_avatar')->singleFile();
         $this->addMediaCollection('user_images');
     }
 
