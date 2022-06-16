@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Contracts\Seoable;
 use App\Enums\PostState;
+use App\Protocols\Meta;
 use App\Traits\SeoableTrait;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +17,6 @@ use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -27,7 +26,13 @@ use Spatie\Tags\HasTags;
 
 class Post extends Model implements HasMedia, Seoable
 {
-    use SoftDeletes, HasFactory, HasSlug, HasTags, Searchable, InteractsWithMedia, SeoableTrait;
+    use SoftDeletes,
+        HasFactory,
+        HasSlug,
+        HasTags,
+        Searchable,
+        InteractsWithMedia,
+        SeoableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -249,15 +254,12 @@ class Post extends Model implements HasMedia, Seoable
     }
 
     /**
-     * Seoable trait.
+     * Seoable interface
      *
-     * @return void
-     * @throws BindingResolutionException
+     * @return Meta
      */
-    public function seoable(): void
+    public function seoable(): Meta
     {
-        $this->seo()
-            ->setTitle($this->title)
-            ->setDescription($this->summary);
+        return $this->seo();
     }
 }

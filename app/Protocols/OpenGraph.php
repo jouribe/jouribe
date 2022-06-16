@@ -13,7 +13,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 class OpenGraph extends Protocol
 {
     /**
-     * Set the title of the page.
+     * Set the title.
      *
      * @param  array|string  $value
      * @param  string  $templateKey
@@ -24,14 +24,14 @@ class OpenGraph extends Protocol
     {
         $this->openGraphService->setTitle($this->parseValue(
             $value,
-            $templateKey ? new Title($this->model, $value, $templateKey) : Title::class
+            $templateKey ? new Title($value, $this->model, $templateKey) : Title::class
         ));
 
         return $this;
     }
 
     /**
-     * Set the description of the page.
+     * Set Description.
      *
      * @param  array|string  $value
      * @param  string  $templateKey
@@ -42,14 +42,14 @@ class OpenGraph extends Protocol
     {
         $this->openGraphService->setDescription($this->parseValue(
             $value,
-            $templateKey ? new Description($this->model, $value, $templateKey) : Description::class
+            $templateKey ? new Description($value, $this->model, $templateKey) : Description::class
         ));
 
         return $this;
     }
 
     /**
-     * Set the URL of the page.
+     * Set the URL.
      *
      * @param  string  $url
      * @return $this
@@ -62,7 +62,7 @@ class OpenGraph extends Protocol
     }
 
     /**
-     * Set the site name of the page.
+     * Set the site name.
      *
      * @param  string  $name
      * @return $this
@@ -75,7 +75,7 @@ class OpenGraph extends Protocol
     }
 
     /**
-     * Set the images of the page.
+     * Set the images.
      *
      * @param  array|string  $images
      * @return $this
@@ -88,7 +88,7 @@ class OpenGraph extends Protocol
     }
 
     /**
-     * Set the properties of the page.
+     * Set the properties.
      *
      * @param  array  $properties
      * @return $this
@@ -103,13 +103,13 @@ class OpenGraph extends Protocol
     }
 
     /**
-     * Add property to the page.
+     * Add the property.
      *
      * @param  string  $key
      * @param  array|string  $value
      * @return $this
      */
-    public function addProperty(string $key,array|string $value): self
+    public function addProperty(string $key, array|string $value): self
     {
         $this->openGraphService->addProperty(
             ...array_values(

@@ -2,27 +2,27 @@
 
 namespace App\Models;
 
-use App\Contracts\SeoContract;
+use App\Contracts\SeoDataContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Seo extends Model implements SeoContract
+class SeoData extends Model implements SeoDataContract
 {
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<string>
      */
     protected $fillable = [
         'meta',
         'open_graph',
-        'twitter',
+        'twitter'
     ];
 
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array<int, string>
+     * @var array<string>
      */
     protected $casts = [
         'meta' => 'array',
@@ -31,9 +31,10 @@ class Seo extends Model implements SeoContract
     ];
 
     /**
-     * Seo belongs to many models.
+     * Seo belongs to a model.
      *
      * @return MorphTo
+     * @noinspection PhpUnused
      */
     public function seoable(): MorphTo
     {
@@ -41,24 +42,25 @@ class Seo extends Model implements SeoContract
     }
 
     /**
-     * Get the metadata for the SEO.
+     * Get the SEO data for the given model.
      *
-     * @return array<int, string>
+     * @return array
      */
     public function getSeoData(): array
     {
         $meta = $this->meta;
-        $openGraph = $this->open_graph;
-        $twitter = $this->twitter;
+        $open_graph = $this->open_graph;
+        $twitter_card = $this->twitter_card;
 
-        $meta += ['open_graph' => !empty($openGraph) ? $openGraph : []];
-        $meta += ['twitter_card' => !empty($twitter) ? $twitter : []];
+        $meta += ['open_graph' => !empty($open_graph) ? $open_graph : []];
+
+        $meta += ['twitter_card' => !empty($twitter_card) ? $twitter_card : []];
 
         return $meta;
     }
 
     /**
-     * Get the model for the SEO.
+     * Get the model's SEO data.
      *
      * @return string
      */

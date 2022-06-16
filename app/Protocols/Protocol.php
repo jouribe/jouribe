@@ -4,7 +4,6 @@ namespace App\Protocols;
 
 use App\Contracts\Seoable;
 use App\Fields\Field;
-use App\Protocols\OpenGraph as OpenGraphs;
 use Artesaos\SEOTools\OpenGraph;
 use Artesaos\SEOTools\SEOMeta;
 use Artesaos\SEOTools\SEOTools;
@@ -20,59 +19,59 @@ abstract class Protocol
      *
      * @var Model|Seoable
      */
-    protected Seoable|Model $model;
+    protected Model|Seoable $model;
 
     /**
-     * Seo protocol model.
+     * Model seo data.
      *
      * @var array
      */
     protected array $modelSeoData;
 
     /**
-     * Meta service.
+     * SEO Meta tools service.
      *
      * @var SEOMeta|null
      */
     protected ?SEOMeta $metaService = null;
 
     /**
-     * Open graph service.
+     * Open graph tools service.
      *
      * @var OpenGraph|null
      */
     protected ?OpenGraph $openGraphService = null;
 
     /**
-     * Twitter cards service.
+     * Twitter cards tools service.
      *
      * @var TwitterCards|null
      */
     protected ?TwitterCards $twitterCardService = null;
 
     /**
-     * Seo tools.
+     * SEO tools.
      *
      * @var SEOTools|null
      */
     protected ?SEOTools $seoTools = null;
 
     /**
-     * Raw seo data.
+     * Raw.
      *
      * @var bool
      */
     protected bool $isRaw = false;
 
     /**
-     * Stored seo data.
+     * Stored Fields Ignored.
      *
      * @var bool
      */
     protected bool $isStoredFieldsIgnores = false;
 
     /**
-     * Protocol constructor.
+     * Constructor.
      *
      * @param  Seoable  $model
      */
@@ -84,15 +83,15 @@ abstract class Protocol
         $this->seoTools = resolve('seotools');
         $this->metaService = resolve('seotools.metatags');
         $this->openGraphService = resolve('seotools.opengraph');
-        $this->twitterCardService = resolve('seotools.twitter'); //TODO: resolve method ability
+        $this->twitterCardService = resolve('seotools.twitter');
     }
 
     /**
-     * Parse seo data.
+     * Parse value.
      *
      * @param  array|string  $value
      * @param  Field|string  $type
-     * @return array|mixed|string
+     * @return mixed
      */
     protected function parseValue(array|string $value, Field|string $type): mixed
     {
@@ -100,7 +99,7 @@ abstract class Protocol
             null :
             $this->getRawFields()[Str::snake(class_basename($type))] ?? null;
 
-        if (! $raw_field && ! $this->isRaw) {
+        if (!$raw_field && !$this->isRaw) {
             $type = $type instanceof Field ? $type : new $type($value, $this->model);
         }
 
@@ -108,7 +107,7 @@ abstract class Protocol
     }
 
     /**
-     * Call method.
+     * Call.
      *
      * @param $name
      * @param $arguments
@@ -138,13 +137,13 @@ abstract class Protocol
     }
 
     /**
-     * Open Graph.
+     * Open graph.
      *
      * @return \App\Protocols\OpenGraph
      */
-    public function opengraph(): OpenGraphs
+    public function opengraph(): \App\Protocols\OpenGraph
     {
-        return new OpenGraphs($this->model);
+        return new \App\Protocols\OpenGraph($this->model);
     }
 
     /**

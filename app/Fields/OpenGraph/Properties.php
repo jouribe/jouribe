@@ -10,9 +10,9 @@ class Properties extends Field
      * Parse the field's value.
      *
      * @param  array|string  $value
-     * @return string|array
+     * @return mixed
      */
-    protected function parseValue(array|string $value): string|array
+    protected function parseValue(array|string $value): mixed
     {
         foreach ($value as &$item) {
             if (is_array($item['value'])) {

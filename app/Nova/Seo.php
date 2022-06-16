@@ -2,40 +2,27 @@
 
 namespace App\Nova;
 
-use Itsmejoshua\Novaspatiepermissions\PermissionsBasedAuthTrait;
+use App\Models\SeoData;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Stepanenko3\NovaJson\JSON;
 
 class Seo extends Resource
 {
-    use PermissionsBasedAuthTrait;
-
-    /**
-     * Permissions based on the user's role.
-     *
-     * @var array|string[]
-     */
-    public static array $permissionsForAbilities = [
-        'all' => 'manage seos'
-    ];
-
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static string $model = \App\Models\Seo::class;
+    public static string $model = SeoData::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'meta.title';
+    public static $title = 'seoable_type';
 
     /**
      * The columns that should be searched.
@@ -43,7 +30,7 @@ class Seo extends Resource
      * @var array
      */
     public static $search = [
-        'meta.title',
+        'id', 'seoable_type'
     ];
 
     /**
@@ -55,33 +42,12 @@ class Seo extends Resource
     public function fields(NovaRequest $request): array
     {
         return [
-            ID::make()->sortable()
-                ->hide(),
-
-            MorphTo::make('Seoable')
-                ->types([
-                    Post::class,
-                    Project::class
-                ])
-                ->searchable()
-                ->withSubtitles()
-                ->withoutTrashed(),
+            ID::make()->sortable(),
 
             JSON::make('Meta', [
-                Text::make('Title')
-                    ->rules('required', 'max:70'),
-
-                Textarea::make('Description')
-                    ->rules('required', 'max:160')
-                    ->alwaysShow(),
-
-                Text::make('Keywords')
-                    ->rules('required', 'max:160'),
-            ]),
-
-            /*JSON::make('Open Graph'),
-
-            JSON::make('Twitter'),*/
+                Text::make('Title', 'title'),
+                Text::make('Description', 'description'),
+            ])
         ];
     }
 
@@ -91,7 +57,7 @@ class Seo extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function cards(NovaRequest $request)
+    public function cards(NovaRequest $request): array
     {
         return [];
     }
@@ -102,7 +68,7 @@ class Seo extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function filters(NovaRequest $request)
+    public function filters(NovaRequest $request): array
     {
         return [];
     }
@@ -113,7 +79,7 @@ class Seo extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function lenses(NovaRequest $request)
+    public function lenses(NovaRequest $request): array
     {
         return [];
     }
@@ -124,7 +90,7 @@ class Seo extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function actions(NovaRequest $request)
+    public function actions(NovaRequest $request): array
     {
         return [];
     }

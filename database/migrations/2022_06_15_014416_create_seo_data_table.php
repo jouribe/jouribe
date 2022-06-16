@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,14 +13,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('seos', static function (Blueprint $table) {
+        Schema::create('seo_data', static function (Blueprint $table) {
             $table->id();
-
             $table->morphs('seoable');
             $table->json('meta');
             $table->json('open_graph')->nullable();
             $table->json('twitter')->nullable();
-
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('seos');
+        Schema::dropIfExists('seo_data');
     }
 };

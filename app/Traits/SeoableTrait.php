@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-use App\Models\Seo;
+
+use App\Models\SeoData;
 use App\Protocols\Meta;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
@@ -12,8 +13,9 @@ trait SeoableTrait
      * Boot the seoable trait for a model.
      *
      * @return void
+     * @noinspection PhpUnused
      */
-    public static function bootSeoableTrait()
+    public static function bootSeoableTrait(): void
     {
         static::deleting(static function ($item) {
             $item->seoData()->delete();
@@ -21,27 +23,28 @@ trait SeoableTrait
     }
 
     /**
-     * Relation to the seo data.
+     * Get the seo data for the model.
      *
      * @return MorphOne
      */
     public function seoData(): MorphOne
     {
-        return $this->morphOne(Seo::class, 'seoable')->withDefault();
+        return $this->morphOne(SeoData::class, 'seoable')->withDefault();
     }
 
     /**
-     * Get the meta data.
+     * Get seo data from the table.
      *
-     * @return array
+     * @return mixed
+     * @noinspection PhpUndefinedFieldInspection
      */
-    public function getSeoData(): array
+    public function getSeoData(): mixed
     {
         return $this->seoData()->exists() ? $this->seoData->getSeoData() : [];
     }
 
     /**
-     * Seo.
+     * Seo data setter.
      *
      * @return Meta
      */

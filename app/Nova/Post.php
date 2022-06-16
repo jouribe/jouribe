@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 namespace App\Nova;
 
@@ -13,13 +13,15 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphOne;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Query\Search\SearchableRelation;
 use Spatie\TagsField\Tags;
 use Suleymanozev\EnumField\Enum;
 
+/**
+ * @property mixed $user
+ */
 class Post extends Resource
 {
     use PermissionsBasedAuthTrait;
@@ -79,7 +81,13 @@ class Post extends Resource
      */
     public static function searchableColumns(): array
     {
-        return ['id', 'title', 'content', new SearchableRelation('users', 'name'), new SearchableRelation('categories', 'name')];
+        return [
+            'id',
+            'title',
+            'content',
+            new SearchableRelation('users', 'name'),
+            new SearchableRelation('categories', 'name')
+        ];
     }
 
     /**
@@ -87,6 +95,7 @@ class Post extends Resource
      *
      * @param  NovaRequest  $request
      * @return array
+     * @noinspection PhpUnusedParameterInspection
      */
     public function fields(NovaRequest $request): array
     {
@@ -183,6 +192,7 @@ class Post extends Resource
      *
      * @param  NovaRequest  $request
      * @return array
+     * @noinspection SenselessMethodDuplicationInspection
      */
     public function cards(NovaRequest $request): array
     {
@@ -194,8 +204,9 @@ class Post extends Resource
      *
      * @param  NovaRequest  $request
      * @return array
+     * @noinspection SenselessMethodDuplicationInspection
      */
-    public function filters(NovaRequest $request)
+    public function filters(NovaRequest $request): array
     {
         return [];
     }
@@ -205,8 +216,9 @@ class Post extends Resource
      *
      * @param  NovaRequest  $request
      * @return array
+     * @noinspection SenselessMethodDuplicationInspection
      */
-    public function lenses(NovaRequest $request)
+    public function lenses(NovaRequest $request): array
     {
         return [];
     }
@@ -217,7 +229,7 @@ class Post extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function actions(NovaRequest $request)
+    public function actions(NovaRequest $request): array
     {
         return [];
     }

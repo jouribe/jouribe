@@ -17,26 +17,26 @@ abstract class TemplatableField extends Field
     protected string $templateKey;
 
     /**
-     * Translator instance.
+     * Translator.
      *
      * @var Translator
      */
     protected Translator $translator;
 
     /**
-     * Create a new field instance.
+     * Create a new field template instance.
      *
-     * @param  Model  $model
      * @param  array|string  $value
+     * @param  Model  $model
      * @param  string  $templateKey
      * @throws BindingResolutionException
      */
-    public function __construct(Model $model, array|string $value, string $templateKey = '')
+    public function __construct(array|string $value, Model $model, string $templateKey = '')
     {
         $this->templateKey = $templateKey;
         $this->translator = Container::getInstance()->make('translator');
 
-        parent::__construct($model, $value);
+        parent::__construct($value, $model);
     }
 
     /**

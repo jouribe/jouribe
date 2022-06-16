@@ -13,6 +13,6 @@ class Title extends TemplatableField
      */
     protected function getNestingLevel(): string
     {
-         return 'open_graph';
+        return 'open_graph';
     }
 }

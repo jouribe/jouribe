@@ -16,10 +16,12 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 class Meta extends Protocol
 {
     /**
+     * Set the meta tags.
+     *
      * @param  array  $tags
      * @return $this
      */
-    public function setData(array $tags): self
+    public function setMeta(array $tags): self
     {
         foreach ($this->parseValue($tags, MetaTag::class) as $item) {
             $this->metaService->addMeta(...array_values($item));
@@ -29,7 +31,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Add meta tag.
+     * Add a meta tag.
      *
      * @param  string  $meta
      * @param  string  $value
@@ -49,7 +51,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Set title.
+     * Set the title.
      *
      * @param  array|string  $value
      * @param  string  $templateKey
@@ -60,14 +62,14 @@ class Meta extends Protocol
     {
         $this->seoTools->setTitle($this->parseValue(
             $value,
-            $templateKey ? new Title($this->model, $value, $templateKey) : Title::class
+            $templateKey ? new Title($value, $this->model, $templateKey) : Title::class
         ));
 
         return $this;
     }
 
     /**
-     * Set title separator.
+     * Set the title separator.
      *
      * @param  string  $value
      * @return $this
@@ -80,25 +82,25 @@ class Meta extends Protocol
     }
 
     /**
-     * Set description.
+     * Set the description.
      *
-     * @param  array|string  $value
+     * @param $value
      * @param  string  $templateKey
      * @return $this
      * @throws BindingResolutionException
      */
-    public function setDescription(array|string $value, string $templateKey = ''): self
+    public function setDescription($value, string $templateKey = ''): self
     {
         $this->seoTools->setDescription($this->parseValue(
             $value,
-            $templateKey ? new Description($this->model, $value, $templateKey) : Description::class
+            $templateKey ? new Description($value, $this->model, $templateKey) : Description::class
         ));
 
         return $this;
     }
 
     /**
-     * Set canonical.
+     * Set the canonical.
      *
      * @param  string  $value
      * @return $this
@@ -111,7 +113,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Set prev.
+     * Set the prev.
      *
      * @param  string  $value
      * @return $this
@@ -124,7 +126,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Set next.
+     * Set the next.
      *
      * @param  string  $value
      * @return $this
@@ -137,7 +139,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Set keywords.
+     * Set the keywords.
      *
      * @param  array|string  $value
      * @return $this
@@ -150,7 +152,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Set languages.
+     * Set the languages.
      *
      * @param  array  $value
      * @return $this
@@ -163,7 +165,7 @@ class Meta extends Protocol
     }
 
     /**
-     * Add alternate languages.
+     * Add a language.
      *
      * @param  string  $lang
      * @param  string  $url

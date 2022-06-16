@@ -14,33 +14,34 @@ abstract class Field
     protected Model $model;
 
     /**
-     * The field's name.
+     * The field's value.
      *
      * @var string|array
      */
-    protected array|string $value;
+    protected string|array $value;
 
     /**
      * Create a new field instance.
      *
-     * @param  Model  $model
      * @param  array|string  $value
+     * @param  Model  $model
      */
-    public function __construct(Model $model, array|string $value)
+    public function __construct(array|string $value, Model $model)
     {
         $this->model = $model;
         $this->value = $this->parseValue($value);
     }
 
     /**
-     * Parse the attributes with keys.
+     * Parse attributes with key/value pairs.
      *
      * @param  array|string  $attributes
      * @return array
      */
     protected function parseAttributesWithKeys(array|string $attributes): array
     {
-         $result = [];
+        $result = [];
+
         if (is_array($attributes)) {
             foreach ($attributes as $key => $field) {
                 $value = $this->model->getAttribute($field);
@@ -58,12 +59,12 @@ abstract class Field
     }
 
     /**
-     * Parse the attributes.
+     * Parse attributes.
      *
-     * @param array|string $attributes
+     * @param  array|string  $attributes
      * @return array
      */
-     protected function parseAttributes(array|string $attributes): array
+    protected function parseAttributes(array|string $attributes): array
     {
         $result = [];
 

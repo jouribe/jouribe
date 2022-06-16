@@ -2,7 +2,9 @@
 
 namespace App\Fields\TwitterCard;
 
-class Type extends \App\Fields\Field
+use App\Fields\Field;
+
+class Type extends Field
 {
     /**
      * Parse the field's value.
@@ -12,6 +14,6 @@ class Type extends \App\Fields\Field
      */
     protected function parseValue(array|string $value): mixed
     {
-         return $this->model->getAttribute($value);
+        return $this->model->getAttribute($value);
     }
 }

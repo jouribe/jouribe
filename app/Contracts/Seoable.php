@@ -4,7 +4,17 @@ namespace App\Contracts;
 
 interface Seoable
 {
-    public function seoable();
+    /**
+     * Seoable interface
+     *
+     * @return mixed
+     */
+    public function seoable(): mixed;
 
-    public function getSeoData();
+    /**
+     * Get the SEOable's SEO.
+     *
+     * @return mixed
+     */
+    public function getSeoData(): mixed;
 }

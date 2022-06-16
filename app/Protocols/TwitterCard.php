@@ -14,7 +14,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 class TwitterCard extends Protocol
 {
     /**
-     * Set the title of the card.
+     * Set title.
      *
      * @param  array|string  $value
      * @param  string  $templateKey
@@ -25,14 +25,14 @@ class TwitterCard extends Protocol
     {
         $this->twitterCardService->setTitle($this->parseValue(
             $value,
-            $templateKey ? new Title($this->model, $value, $templateKey) : Title::class
+            $templateKey ? new Title($value, $this->model, $templateKey) : Title::class
         ));
 
         return $this;
     }
 
     /**
-     * Set the description of the card.
+     * Set description.
      *
      * @param  array|string  $value
      * @param  string  $templateKey
@@ -43,14 +43,14 @@ class TwitterCard extends Protocol
     {
         $this->twitterCardService->setDescription($this->parseValue(
             $value,
-            $templateKey ? new Description($this->model, $value, $templateKey) : Description::class
+            $templateKey ? new Description($value, $this->model, $templateKey) : Description::class
         ));
 
         return $this;
     }
 
     /**
-     * Set the url of the card.
+     * Set url.
      *
      * @param  string  $value
      * @return $this
@@ -63,7 +63,7 @@ class TwitterCard extends Protocol
     }
 
     /**
-     * Set the site of the card.
+     * Set site.
      *
      * @param  string  $value
      * @return $this
@@ -76,7 +76,7 @@ class TwitterCard extends Protocol
     }
 
     /**
-     * Set the type of the card.
+     * Set type.
      *
      * @param  string  $value
      * @return $this
@@ -89,7 +89,7 @@ class TwitterCard extends Protocol
     }
 
     /**
-     * Set the images of the card.
+     * Set images.
      *
      * @param  array|string  $value
      * @return $this
@@ -102,7 +102,7 @@ class TwitterCard extends Protocol
     }
 
     /**
-     * Set the values of the card.
+     * Set values.
      *
      * @param  array  $value
      * @return $this
@@ -117,13 +117,13 @@ class TwitterCard extends Protocol
     }
 
     /**
-     * Add the values of the card.
+     * Add value.
      *
      * @param  string  $key
      * @param  array|string  $value
      * @return $this
      */
-    public function addValue(string $key,array|string $value): self
+    public function addValue(string $key, array|string $value): self
     {
         $this->twitterCardService->addValue(
             ...array_values(
@@ -133,6 +133,7 @@ class TwitterCard extends Protocol
 
         return $this;
     }
+
 
     /**
      * Get raw fields.
