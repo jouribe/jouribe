@@ -73,11 +73,6 @@ jobs:
           mysql --version
           php artisan migrate:fresh --seed
 
-      - name: Execute the PHP lint script 🧹
-        run: |
-          ./vendor/bin/phpstan --version
-          ./vendor/bin/phpstan analyse
-
       - name: Run tests 🧪
         run: |
           ./vendor/bin/pest --version
