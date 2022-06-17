@@ -1,7 +1,14 @@
-<?php
+<?php /** @noinspection StaticClosureCanBeUsedInspection */
 
-/** @noinspection StaticClosureCanBeUsedInspection */
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function Pest\Laravel\get;
+uses(Tests\TestCase::class, RefreshDatabase::class);
 
-get('/')->assertStatus(200);
+beforeEach(fn () => User::factory()->create());
+
+it('fetch a user', function () {
+    $this->assertDatabaseHas('users', [
+        'email' => $attributes['email'],
+    ]);
+});
