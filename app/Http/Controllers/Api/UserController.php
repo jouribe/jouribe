@@ -23,9 +23,7 @@ class UserController extends Controller
         $user = $service->create($request);
         $service->uploadAvatar($request, $user);
 
-        event(new NewUserRegistered($user));
-
-        //NewUserRegistered::dispatch($user, $service);
+        NewUserRegistered::dispatch($user);
 
         return response()->json([
             'message' => 'User has been created',
