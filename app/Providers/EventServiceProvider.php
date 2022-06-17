@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\NewUserRegistered;
+use App\Listeners\NewUserNotifyAdminsListener;
+use App\Listeners\NewUserWelcomeEmailListener;
+use App\Listeners\TEstListener;
 use App\Models\Post;
 use App\Observers\PostObserver;
 use Illuminate\Auth\Events\Registered;
@@ -20,6 +24,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        NewUserRegistered::class => [
+            NewUserNotifyAdminsListener::class,
+            NewUserWelcomeEmailListener::class,
+        ],
     ];
 
     /**
@@ -36,8 +45,9 @@ class EventServiceProvider extends ServiceProvider
      * Determine if events and listeners should be automatically discovered.
      *
      * @return bool
+     * @noinspection SenselessMethodDuplicationInspection
      */
-    public function shouldDiscoverEvents()
+    public function shouldDiscoverEvents(): bool
     {
         return false;
     }
