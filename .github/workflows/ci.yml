@@ -81,7 +81,7 @@ jobs:
       - name: Run security checks 👮
         uses: symfonycorp/security-checker-action@v3
 
-      - name: Upload logs on build failure 🪵
+      - name: Upload logs on build failure 📚
         uses: actions/upload-artifact@v3
         if: failure()
         with:
