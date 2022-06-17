@@ -21,17 +21,31 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Install composer dependencies
-      run: |
-        composer install --no-scripts
-
     - name: Install additional PHP extensions
       run: apt-get install -y php8.1-bz2 php8.1-soap
 
-    - name: Prepare Laravel Application
+    - name: Cache composer dependencies
+      uses: actions/cache@v1
+      with:
+        path: vendor
+        key: composer-${{ hashFiles('composer.lock') }}
+
+    - name: Install dependencies
+      run: |
+        php --version
+        composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+        composer install -n --prefer-dist
+
+    - name: Boot Laravel application
       run: |
         cp .env.ci .env
         php artisan key:generate
+        php artisan --version
+
+    - name: Migrate database
+      run: |
+        mysql --version
+        php artisan migrate:fresh --seed
 
     - name: Run Testsuite
       run: vendor/bin/phpunit tests/
