@@ -20,6 +20,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request, UserService $service): JsonResponse
     {
+        // User::with('latestPost')->get()->sortByDesc('latestPost.created_at');
+
         $user = $service->create($request);
         $service->uploadAvatar($request, $user);
 

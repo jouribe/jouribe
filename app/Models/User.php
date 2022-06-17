@@ -74,7 +74,7 @@ class User extends Authenticatable implements HasMedia
     public function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn () => str_replace(config('app.url') . "/storage/", '', $this->getFirstMediaUrl('avatar', 'thumb'))
+            get: fn () => str_replace(config('app.url') . '/storage/', '', $this->getFirstMediaUrl('avatar', 'thumb'))
         );
     }
 
@@ -113,6 +113,17 @@ class User extends Authenticatable implements HasMedia
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Get the user's latest post.
+     *
+     * @return HasOne
+     * @noinspection PhpUnused
+     */
+    public function latestPost(): HasOne
+    {
+        return $this->hasOne(Post::class)->latest();
     }
 
     /**
