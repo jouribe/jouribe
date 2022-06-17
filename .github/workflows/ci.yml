@@ -1,51 +1,94 @@
-on: push
-name: CI
+name: ci
+
+on:
+  [push]
+
 jobs:
-  phpunit:
-    runs-on: ubuntu-latest
-    container:
-      image: kirschbaumdevelopment/laravel-test-runner:8.1
+  ci:
+    name: PHP ${{ matrix.php }}
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php: ['8.1'] # add '8.2' sometime soon
 
     services:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test
+          MYSQL_DATABASE: database_ci
+          MYSQL_USER: user
+          MYSQL_PASSWORD: secret
+          MYSQL_ROOT_PASSWORD: secretroot
         ports:
-          - 33306:3306
+          - 3307:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+      - name: Checkout 🛎
+        uses: actions/checkout@master
 
-    - name: Install additional PHP extensions
-      run: apt-get install -y php8.1-bz2 php8.1-soap
+      - name: Verify MySQL connection ❤️
+        run: |
+          mysql --version
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uuser -psecret -e "SHOW DATABASES"
 
-    - name: Cache composer dependencies
-      uses: actions/cache@v1
-      with:
-        path: vendor
-        key: composer-${{ hashFiles('composer.lock') }}
+      - name: Setup the PHP ${{ matrix.php }} environment on ${{ runner.os }} 🏗
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: xdebug
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install dependencies
-      run: |
-        php --version
-        composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-        composer install -n --prefer-dist
+      - name: Get Composer cache directory path 🛠
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-    - name: Boot Laravel application
-      run: |
-        cp .env.ci .env
-        php artisan key:generate
-        php artisan --version
+      - name: Cache composer 📦
+        uses: actions/cache@v2
+        id: php-cache # use this to check for `cache-hit` (`steps.php-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.php }}-composer-
 
-    - name: Migrate database
-      run: |
-        mysql --version
-        php artisan migrate:fresh --seed
+      - name: Install Composer dependencies 💻
+        run: |
+          php --version
+          composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+          composer install --no-interaction --no-progress --prefer-dist --optimize-autoloader --no-suggest
 
-    - name: Run Testsuite
-      run: vendor/bin/phpunit tests/
+      - name: Boot Laravel application 🥾
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+          php artisan --version
+
+      - name: Migrate database 📇
+        run: |
+          mysql --version
+          php artisan migrate:fresh --seed
+
+      - name: Execute the PHP lint script 🧹
+        run: |
+          ./vendor/bin/phpstan --version
+          ./vendor/bin/phpstan analyse
+
+      - name: Run tests 🧪
+        run: |
+          ./vendor/bin/pest --version
+          ./vendor/bin/pest
+
+      - name: Run security checks 👮
+        uses: symfonycorp/security-checker-action@v3
+
+      - name: Upload logs on build failure 🪵
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: Laravel Logs
+          path: ./storage/logs
