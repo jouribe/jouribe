@@ -8,4 +8,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::resource('users', UserController::class)->except(['create', 'edit']);

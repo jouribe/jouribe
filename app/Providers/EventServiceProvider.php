@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Events\NewUserRegistered;
 use App\Listeners\NewUserNotifyAdminsListener;
 use App\Listeners\NewUserWelcomeEmailListener;
-use App\Listeners\TEstListener;
 use App\Models\Post;
 use App\Observers\PostObserver;
 use Illuminate\Auth\Events\Registered;

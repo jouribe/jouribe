@@ -19,5 +19,7 @@ class UserSeeder extends Seeder
         $admin = Role::create(['name' => 'Super Admin']);
 
         $user->assignRole($admin);
+
+        User::factory(19)->create();
     }
 }

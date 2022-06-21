@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Notifications\NewUserNotification;
 use Illuminate\Http\Request;
@@ -14,15 +16,31 @@ class UserService
     /**
      * Create a new user.
      *
-     * @param  Request  $request
+     * @param  StoreUserRequest  $request
      * @return User
      */
-    public function create(Request $request): User
+    public function create(StoreUserRequest $request): User
     {
         return User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
+        ]);
+    }
+
+    /**
+     * Update a user.
+     *
+     * @param  UpdateUserRequest  $request
+     * @return bool
+     */
+    public function update(UpdateUserRequest $request): bool
+    {
+        return User::update([
+            'id' => $request->get('id'),
+        ], [
+            'name' => $request->get('name'),
+            'email' => $request->get('email')
         ]);
     }
 
