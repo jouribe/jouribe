@@ -14,6 +14,6 @@ class Prev extends Field
      */
     protected function parseValue(array|string $value): mixed
     {
-         return $this->model->getAttribute($value);
+        return $this->model->getAttribute($value);
     }
 }

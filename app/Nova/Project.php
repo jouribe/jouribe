@@ -68,7 +68,7 @@ class Project extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'slug', 'summary', 'description'
+        'id', 'name', 'slug', 'summary', 'description',
     ];
 
     /**

@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 use JetBrains\PhpStorm\ArrayShape;
 
 class AddressFactory extends Factory
@@ -15,12 +14,12 @@ class AddressFactory extends Factory
      * @return array
      */
     #[ArrayShape([
-        'type' => "string",
-        'street' => "string",
-        'city' => "string",
-        'state' => "string",
-        'zip' => "string",
-        'user_id' => "mixed"
+        'type' => 'string',
+        'street' => 'string',
+        'city' => 'string',
+        'state' => 'string',
+        'zip' => 'string',
+        'user_id' => 'mixed',
     ])]
     public function definition(): array
     {

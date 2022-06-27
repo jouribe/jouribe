@@ -27,14 +27,14 @@ class NewUsers extends Value
      * @return array
      */
     #[ArrayShape([
-        30 => "string",
-        60 => "string",
-        365 => "string",
-        'TODAY' => "string",
-        'YESTERDAY' => "string",
-        'MTD' => "string",
-        'QTD' => "string",
-        'YTD' => "string"
+        30 => 'string',
+        60 => 'string',
+        365 => 'string',
+        'TODAY' => 'string',
+        'YESTERDAY' => 'string',
+        'MTD' => 'string',
+        'QTD' => 'string',
+        'YTD' => 'string',
     ])]
     public function ranges(): array
     {

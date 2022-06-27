@@ -11,7 +11,9 @@ use Spatie\Sluggable\SlugOptions;
 
 class Category extends Model
 {
-    use SoftDeletes, HasFactory, HasSlug;
+    use SoftDeletes;
+    use HasFactory;
+    use HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -71,5 +73,15 @@ class Category extends Model
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Get the series for the category.
+     *
+     * @return HasMany
+     */
+    public function series(): HasMany
+    {
+        return $this->hasMany(Serie::class);
     }
 }

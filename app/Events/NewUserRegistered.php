@@ -9,7 +9,9 @@ use Illuminate\Queue\SerializesModels;
 
 class NewUserRegistered
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * New user instance.

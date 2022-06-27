@@ -9,7 +9,6 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\MorphTo;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Suleymanozev\EnumField\Enum;
 
@@ -80,7 +79,7 @@ class Comment extends Resource
             MorphTo::make('Commentable')
                 ->types([
                     Post::class,
-                    Project::class
+                    Project::class,
                 ])
                 ->searchable()
                 ->withSubtitles()

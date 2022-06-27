@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnused */
+<?php
+
+/** @noinspection PhpUnused */
 
 namespace App\Nova;
 
@@ -86,7 +88,7 @@ class Post extends Resource
             'title',
             'content',
             new SearchableRelation('users', 'name'),
-            new SearchableRelation('categories', 'name')
+            new SearchableRelation('categories', 'name'),
         ];
     }
 

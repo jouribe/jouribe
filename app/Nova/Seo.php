@@ -30,7 +30,7 @@ class Seo extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'seoable_type'
+        'id', 'seoable_type',
     ];
 
     /**
@@ -47,7 +47,7 @@ class Seo extends Resource
             JSON::make('Meta', [
                 Text::make('Title', 'title'),
                 Text::make('Description', 'description'),
-            ])
+            ]),
         ];
     }
 

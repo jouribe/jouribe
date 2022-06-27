@@ -22,7 +22,7 @@ class Comment extends Model
         'commentable_type',
         'status',
         'type',
-        'parent_id'
+        'parent_id',
     ];
 
     /**
@@ -32,7 +32,7 @@ class Comment extends Model
      */
     protected $casts = [
         'status' => CommentStatus::class,
-        'type' => CommentType::class
+        'type' => CommentType::class,
     ];
 
     /**

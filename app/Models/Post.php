@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JetBrains\PhpStorm\ArrayShape;
 use Laravel\Scout\Attributes\SearchUsingFullText;
-use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia;
@@ -26,13 +25,23 @@ use Spatie\Tags\HasTags;
 
 class Post extends Model implements HasMedia, Seoable
 {
-    use SoftDeletes,
-        HasFactory,
-        HasSlug,
-        HasTags,
-        Searchable,
-        InteractsWithMedia,
-        SeoableTrait;
+    use SoftDeletes;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+    use Searchable;
+    use InteractsWithMedia;
+    use SeoableTrait;
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [
+        'user',
+        'category',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -47,9 +56,22 @@ class Post extends Model implements HasMedia, Seoable
         'user_id',
         'published_at',
         'archived_at',
-        'schedule_at',
+        'scheduled_at',
         'featured',
         'state',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'published_at' => 'datetime',
+        'archived_at' => 'datetime',
+        'scheduled_at' => 'datetime',
+        'featured' => 'boolean',
+        'state' => PostState::class,
     ];
 
     /**
@@ -63,26 +85,13 @@ class Post extends Model implements HasMedia, Seoable
     }
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'published_at' => 'datetime',
-        'archived_at' => 'datetime',
-        'schedule_at' => 'datetime',
-        'featured' => 'boolean',
-        'state' => PostState::class
-    ];
-
-    /**
      * Get the name of the index associated with the model.
      *
      * @return string
      */
     public function searchableAs(): string
     {
-        return 'posts_index';
+        return 'posts';
     }
 
     /**
@@ -91,30 +100,26 @@ class Post extends Model implements HasMedia, Seoable
      * @return array
      */
     #[ArrayShape([
-        'id' => "int|mixed",
-        'title' => "mixed|string",
-        'content' => "mixed|string",
-        'summary' => "mixed|string",
-        'user' => "mixed|string",
-        'category' => "mixed|string",
+        'title' => 'mixed|string',
+        'content' => 'mixed|string',
+        'summary' => 'mixed|string',
+        'user' => 'mixed|string',
+        'category' => 'mixed|string',
     ])]
-    #[SearchUsingPrefix(['id'])]
     #[SearchUsingFullText(['title', 'content', 'summary'])]
     public function toSearchableArray(): array
     {
         return [
-            'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
             'summary' => $this->summary,
             'user' => [
-                'id' => $this->user->id,
                 'name' => $this->user->name,
-                'email' => $this->user->email
+                'email' => $this->user->email,
             ],
             'category' => [
-                'id' => $this->category->id,
-                'name' => $this->category->name
+                'slug' => $this->category->slug,
+                'name' => $this->category->name,
             ],
         ];
     }
@@ -125,13 +130,31 @@ class Post extends Model implements HasMedia, Seoable
      * @param  Builder  $query
      * @return Builder
      */
-    protected function makeAllSearchableUsing($query): Builder
+    public function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->with('user', 'category');
+        return $query->with(['user', 'category']);
+    }
+
+    /**
+     * Get searchable filter attributes.
+     *
+     * @return string[]
+     * @noinspection PhpUnused
+     */
+    public static function getSearchFilterAttributes(): array
+    {
+        return [
+            'user.name',
+            'user.email',
+            'category.name',
+            'category.slug',
+        ];
     }
 
     /**
      * Get the options for generating the slug.
+     *
+     * @return SlugOptions
      */
     public function getSlugOptions(): SlugOptions
     {
@@ -261,5 +284,17 @@ class Post extends Model implements HasMedia, Seoable
     public function seoable(): Meta
     {
         return $this->seo();
+    }
+
+    /**
+     * Get posts are published.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     * @noinspection PhpUnused
+     */
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->whereNotNull('published_at');
     }
 }

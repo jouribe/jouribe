@@ -57,7 +57,7 @@ class Profile extends Resource
      * @var array
      */
     public static $search = [
-        'users.name', 'users.email'
+        'users.name', 'users.email',
     ];
 
     /**
@@ -85,7 +85,7 @@ class Profile extends Resource
                 Text::make('Twitter'),
                 Text::make('Github'),
                 Text::make('Web'),
-            ])
+            ]),
         ];
     }
 

@@ -2,7 +2,8 @@
 
 /** @noinspection StaticClosureCanBeUsedInspection */
 
-use function Pest\Laravel\{get, getJson};
+use function Pest\Laravel\get;
+use function Pest\Laravel\getJson;
 
 get('/')->assertStatus(200);
 

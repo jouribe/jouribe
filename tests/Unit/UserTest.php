@@ -1,4 +1,6 @@
-<?php /** @noinspection StaticClosureCanBeUsedInspection */
+<?php
+
+/** @noinspection StaticClosureCanBeUsedInspection */
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

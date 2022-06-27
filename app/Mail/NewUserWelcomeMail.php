@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NewUserWelcomeMail extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * User instance.
@@ -34,7 +35,7 @@ class NewUserWelcomeMail extends Mailable implements ShouldQueue
      *
      * @return NewUserWelcomeMail
      */
-    public function build(): NewUserWelcomeMail
+    public function build(): self
     {
         return $this
             ->markdown('emails.new-user-welcome')

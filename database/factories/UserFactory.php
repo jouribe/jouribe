@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\ArrayShape;
-use Illuminate\Support\Carbon;
 
 /**
  * @extends Factory
@@ -18,11 +18,11 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     #[ArrayShape([
-        'name' => "string",
-        'email' => "string",
+        'name' => 'string',
+        'email' => 'string',
         'email_verified_at' => Carbon::class,
-        'password' => "string",
-        'remember_token' => "string",
+        'password' => 'string',
+        'remember_token' => 'string',
         'created_at' => Carbon::class,
         'updated_at' => Carbon::class,
     ])]

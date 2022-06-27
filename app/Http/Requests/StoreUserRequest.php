@@ -24,9 +24,9 @@ class StoreUserRequest extends FormRequest
      * @return array<string, mixed>
      */
     #[ArrayShape([
-        'name' => "string[]",
-        'email' => "string[]",
-        'password' => "array"
+        'name' => 'string[]',
+        'email' => 'string[]',
+        'password' => 'array',
     ])]
     public function rules(): array
     {

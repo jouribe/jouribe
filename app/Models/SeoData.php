@@ -16,7 +16,7 @@ class SeoData extends Model implements SeoDataContract
     protected $fillable = [
         'meta',
         'open_graph',
-        'twitter'
+        'twitter',
     ];
 
     /**
@@ -27,7 +27,7 @@ class SeoData extends Model implements SeoDataContract
     protected $casts = [
         'meta' => 'array',
         'open_graph' => 'array',
-        'twitter' => 'array'
+        'twitter' => 'array',
     ];
 
     /**
@@ -52,9 +52,9 @@ class SeoData extends Model implements SeoDataContract
         $open_graph = $this->open_graph;
         $twitter_card = $this->twitter_card;
 
-        $meta += ['open_graph' => !empty($open_graph) ? $open_graph : []];
+        $meta += ['open_graph' => ! empty($open_graph) ? $open_graph : []];
 
-        $meta += ['twitter_card' => !empty($twitter_card) ? $twitter_card : []];
+        $meta += ['twitter_card' => ! empty($twitter_card) ? $twitter_card : []];
 
         return $meta;
     }

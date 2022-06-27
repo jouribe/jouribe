@@ -32,7 +32,7 @@ class Profile extends Model
         'user_id',
         'birthday',
         'gender',
-        'socials'
+        'socials',
     ];
 
     /**
@@ -43,7 +43,7 @@ class Profile extends Model
     protected $casts = [
         'socials' => 'array',
         'birthday' => 'date',
-        'gender' => UserGender::class
+        'gender' => UserGender::class,
     ];
 
     /**
@@ -52,7 +52,7 @@ class Profile extends Model
      * @var array
      */
     protected $appends = [
-        'age'
+        'age',
     ];
 
     /**

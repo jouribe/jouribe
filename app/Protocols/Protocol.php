@@ -99,7 +99,7 @@ abstract class Protocol
             null :
             $this->getRawFields()[Str::snake(class_basename($type))] ?? null;
 
-        if (!$raw_field && !$this->isRaw) {
+        if (! $raw_field && ! $this->isRaw) {
             $type = $type instanceof Field ? $type : new $type($value, $this->model);
         }
 
@@ -123,7 +123,7 @@ abstract class Protocol
             return $this;
         }
 
-        throw new BadMethodCallException;
+        throw new BadMethodCallException();
     }
 
     /**
@@ -141,7 +141,7 @@ abstract class Protocol
      *
      * @return \App\Protocols\OpenGraph
      */
-    public function opengraph(): \App\Protocols\OpenGraph
+    public function opengraph(): OpenGraph
     {
         return new \App\Protocols\OpenGraph($this->model);
     }

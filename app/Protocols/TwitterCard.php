@@ -134,7 +134,6 @@ class TwitterCard extends Protocol
         return $this;
     }
 
-
     /**
      * Get raw fields.
      *

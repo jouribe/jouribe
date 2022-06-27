@@ -16,8 +16,8 @@ class CategoryFactory extends Factory
      * @return array<string, mixed>
      */
     #[ArrayShape([
-        'name' => "string",
-        'parent_id' => "null"
+        'name' => 'string',
+        'parent_id' => 'null',
     ])]
     public function definition(): array
     {

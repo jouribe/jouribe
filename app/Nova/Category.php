@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Database\Eloquent\Builder;
 use Itsmejoshua\Novaspatiepermissions\PermissionsBasedAuthTrait;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -26,7 +27,7 @@ class Category extends Resource
         'delete' => 'delete categories',
         'restore' => 'restore categories',
         'forceDelete' => 'destroy categories',
-        'addPost' => 'add category on posts'
+        'addPost' => 'add category on posts',
     ];
 
     /**
@@ -67,9 +68,24 @@ class Category extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            HasMany::make('Subcategories'),
+
             HasMany::make('Posts'),
         ];
     }
+
+    /**
+     * Build an "index" query for the given resource.
+     *
+     * @param  NovaRequest  $request
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query): Builder
+    {
+        return $query->where('parent_id', null);
+    }
+
 
     /**
      * Get the cards available for the request.

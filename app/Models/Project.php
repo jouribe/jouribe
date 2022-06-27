@@ -22,7 +22,11 @@ use Spatie\Tags\HasTags;
 
 class Project extends Model implements HasMedia
 {
-    use SoftDeletes, HasSlug, InteractsWithMedia, Searchable, HasTags;
+    use SoftDeletes;
+    use HasSlug;
+    use InteractsWithMedia;
+    use Searchable;
+    use HasTags;
 
     /**
      * The attributes that are mass assignable.
@@ -65,13 +69,13 @@ class Project extends Model implements HasMedia
      * @return array
      */
     #[ArrayShape([
-        'id' => "int|mixed",
-        'name' => "mixed|string",
-        'description' => "mixed|string",
-        'summary' => "mixed|string",
-        'status' => "mixed|string",
-        'user' => "mixed|string",
-        'category' => "mixed|string",
+        'id' => 'int|mixed',
+        'name' => 'mixed|string',
+        'description' => 'mixed|string',
+        'summary' => 'mixed|string',
+        'status' => 'mixed|string',
+        'user' => 'mixed|string',
+        'category' => 'mixed|string',
     ])]
     #[SearchUsingPrefix(['id'])]
     #[SearchUsingFullText(['name', 'description', 'summary'])]
@@ -86,11 +90,11 @@ class Project extends Model implements HasMedia
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
-                'email' => $this->user->email
+                'email' => $this->user->email,
             ],
             'category' => [
                 'id' => $this->category->id,
-                'name' => $this->category->name
+                'name' => $this->category->name,
             ],
         ];
     }

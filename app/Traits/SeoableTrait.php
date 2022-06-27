@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-
 use App\Models\SeoData;
 use App\Protocols\Meta;
 use Illuminate\Database\Eloquent\Relations\MorphOne;

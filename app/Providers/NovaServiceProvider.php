@@ -46,7 +46,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Gate::define('viewNova', static function ($user) {
             return in_array($user->email, [
                 'jorge@jouribe.dev',
-                'jouribe@gmail.com'
+                'jouribe@gmail.com',
             ]);
         });
     }
@@ -59,7 +59,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards(): array
     {
         return [
-            new Main,
+            new Main(),
         ];
     }
 
@@ -71,7 +71,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools(): array
     {
         return [
-            (new Novaspatiepermissions)->canSee(function (Request $request) {
+            (new Novaspatiepermissions())->canSee(function (Request $request) {
                 return $request->user()->hasRole('Super Admin');
             }),
         ];

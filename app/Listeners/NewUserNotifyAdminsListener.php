@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Events\NewUserRegistered;
 use App\Notifications\NewUserAdminNotification;
-use App\Services\UserService;
 use Illuminate\Support\Facades\Notification;
 
 class NewUserNotifyAdminsListener
@@ -17,7 +16,7 @@ class NewUserNotifyAdminsListener
      */
     public function handle(NewUserRegistered $event): void
     {
-        Notification::route('mail', "jorge@jouribe.dev")
+        Notification::route('mail', 'jorge@jouribe.dev')
             ->notify(new NewUserAdminNotification($event->user));
     }
 }

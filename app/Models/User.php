@@ -20,12 +20,12 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasApiTokens,
-        HasFactory,
-        Notifiable,
-        SoftDeletes,
-        HasRoles,
-        InteractsWithMedia;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
+    use HasRoles;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -35,7 +35,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'password'
+        'password',
     ];
 
     /**
@@ -63,7 +63,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      * @var array
      */
     protected $appends = [
-        'avatar'
+        'avatar',
     ];
 
     /**
@@ -74,7 +74,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn () => str_replace(config('app.url') . '/storage/', '', $this->getFirstMediaUrl('avatar', 'thumb'))
+            get: fn() => str_replace(config('app.url').'/storage/', '', $this->getFirstMediaUrl('avatar', 'thumb'))
         );
     }
 
@@ -134,6 +134,16 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Get the user's series.
+     *
+     * @return HasMany
+     */
+    public function series(): HasMany
+    {
+        return $this->hasMany(Serie::class);
     }
 
     /**

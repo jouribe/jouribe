@@ -40,7 +40,7 @@ class UserService
             'id' => $request->get('id'),
         ], [
             'name' => $request->get('name'),
-            'email' => $request->get('email')
+            'email' => $request->get('email'),
         ]);
     }
 

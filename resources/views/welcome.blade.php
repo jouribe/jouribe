@@ -7,12 +7,20 @@
         <title>{{ config("app.name") }}</title>
 
         <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link rel="preload" as="style" onload="this.rel = 'stylesheet'"  href="{{ mix('css/app.css') }}">
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        @livewireStyles
     </head>
     <body class="antialiased">
-        {{--{{ $media }}--}}
+        <div class="box bg-orange-500"></div>
+        <div class="box bg-blue-500"></div>
+        <div class="box bg-purple-500"></div>
+
+        <livewire:post />
+
+        @livewireScripts
     </body>
 </html>

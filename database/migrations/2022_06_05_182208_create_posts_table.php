@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -36,7 +35,7 @@ return new class extends Migration {
             $table->boolean('featured')->default(false);
             $table->string('state')->default('draft');
 
-            $table->dateTime('schedule_at')->nullable();
+            $table->dateTime('scheduled_at')->nullable();
             $table->dateTime('archived_at')->nullable();
             $table->dateTime('published_at')->nullable();
 

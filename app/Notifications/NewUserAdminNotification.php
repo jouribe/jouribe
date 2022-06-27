@@ -47,7 +47,7 @@ class NewUserAdminNotification extends Notification
      */
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->greeting('Hello!')
             ->line('A new user has registered: '.$this->user->name)
             ->line('The introduction to the notification.')
