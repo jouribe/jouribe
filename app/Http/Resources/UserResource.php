@@ -42,7 +42,7 @@ class UserResource extends JsonResource
          'name' => $this->name,
          'email' => $this->email,
          'email_verified_at' => $this->email_verified_at,
-         'avatar' => $this->avatar,
+         'avatar' => $this->avatar === "" ? null : $this->avatar,
          //'posts' => $this->posts,
          //'remember_token' => $this->when($request->user()->isAdmin(), $this->remember_token),
          'created_at' => $this->created_at,
