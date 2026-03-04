@@ -4,9 +4,9 @@ I'm **Jorge O. Uribe**, a Software Engineer focused on Distributed Systems and S
 
 - 🔭 I’m currently working on A **Distributed Event Processing Platform** using `.NET`, `Redis Streams` and `PostgreSQL`.
 - 🌱 I’m currently learning  
- - Advanced **distributed systems patterns**
- - **Event-driven architectures**
- - **High-scale system design**
+   - Advanced **distributed systems patterns**
+   - **Event-driven architectures**
+   - **High-scale system design**
 
 👯 I’m looking to collaborate on  
 - Event-driven systems  
