@@ -2,7 +2,7 @@
 
 I'm **Jorge O. Uribe**, a Software Engineer focused on Distributed Systems and Scalable Architectures.
 
----
+<!--
 
 🔭 I’m currently working on  
 - A **Distributed Event Processing Platform** using `.NET`, `Redis Streams` and `PostgreSQL`.
@@ -42,3 +42,4 @@ Infrastructure
 
 - GitHub: https://github.com/jouribe  
 - LinkedIn: (add here)
+-->
